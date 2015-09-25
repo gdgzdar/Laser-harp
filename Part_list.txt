@@ -1,0 +1,6 @@
+Hardware list:
+  1x    Arduino DUE
+  24x   Laser redDot 5mW
+  24x   Photo transistor 3DU33
+  1x    USB cabel
+  
