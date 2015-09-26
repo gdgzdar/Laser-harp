@@ -1,2 +1,2 @@
-# Laser-harp
+# Laser harp
 Project in progress...
