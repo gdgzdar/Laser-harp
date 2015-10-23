@@ -3,7 +3,7 @@
 
 
 ##Hardware:
-Sensor in frame is 46% completed
+Sensor in frame is 100% completed
 
 Lasers in frame is 0% completed
 
