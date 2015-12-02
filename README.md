@@ -5,11 +5,11 @@
 ##Hardware:
 Sensor in frame is 100% completed
 
-Lasers in frame is 0% completed
+Lasers in frame is 99% completed
 
 Arduino LCD display is 0% completed
 
-Ardduino pragraming is 0% completed
+Ardduino pragraming is 70% completed
 
 
 ##Sofware:
