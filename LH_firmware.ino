@@ -1,4 +1,6 @@
+
 boolean laserField[26] = {false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
+boolean laserReaderAction = false;
 
 int sensor1 = 1;
 
@@ -35,6 +37,40 @@ int sensor25 = 25;
 
 int sensor26 = 26;
 
+//--------------------------------------------------------------
+
+int laser1 = 27;
+
+int laser2 = 28;
+int laser3 = 29;
+int laser4 = 30;
+int laser5 = 31;
+int laser6 = 32;
+int laser7 = 33;
+int laser8 = 34;
+int laser9 = 35;
+
+int laser10 = 36;
+int laser11 = 37;
+int laser12 = 38;
+int laser13 = 39;
+int laser14 = 40;
+int laser15 = 41;
+int laser16 = 42;
+int laser17 = 43;
+
+int laser18 = 44;
+int laser19 = 45;
+int laser20 = 46;
+int laser21 = 47;
+int laser22 = 48;
+int laser23 = 49;
+int laser24 = 50;
+int laser25 = 51;
+
+int laser26 = 52;
+
+
 void setup() {
 	Serial.begin(115200); 
 
@@ -69,11 +105,48 @@ void setup() {
        
        pinMode(sensor26, INPUT);
        
+  //------------------------------------------------------
+  
+       pinMode(laser1, INPUT);
+       
+       pinMode(laser2, INPUT); 
+       pinMode(laser3, INPUT); 
+       pinMode(laser4, INPUT); 
+       pinMode(laser5, INPUT); 
+       pinMode(laser6, INPUT); 
+       pinMode(laser7, INPUT); 
+       pinMode(laser8, INPUT); 
+       pinMode(laser9, INPUT);
+       
+       pinMode(laser10, INPUT); 
+       pinMode(laser11, INPUT);
+       pinMode(laser12, INPUT);
+       pinMode(laser13, INPUT); 
+       pinMode(laser14, INPUT); 
+       pinMode(laser15, INPUT); 
+       pinMode(laser16, INPUT);
+       pinMode(laser17, INPUT); 
+       pinMode(laser18, INPUT); 
+       
+       pinMode(laser19, INPUT);
+       pinMode(laser20, INPUT);
+       pinMode(laser21, INPUT);
+       pinMode(laser22, INPUT);
+       pinMode(laser23, INPUT);
+       pinMode(laser24, INPUT);
+       pinMode(laser25, INPUT);
+       
+       pinMode(laser26, INPUT);
+       
         
 }
 void loop() {
-	LaserReader();
-	delay(1);
+ 
+ 
+ 
+  if(laserReaderAction){
+     LaserReader();
+  }
 }
 
 
