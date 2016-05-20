@@ -14,8 +14,28 @@ class Harp:
         self.menu = ["Menu", "Bass", "Church", "Glitch", "Glow", "Iron", "Techno", "Steal", "Violin"]
         self.empty = PhotoImage(file="images/notes/empty.png")
         self.note_images = {
-            "g": PhotoImage(file="images/notes/second-line.png"),
-            "a": PhotoImage(file="images/notes/second-line.png")
+            "1": PhotoImage(file="images/notes/second-space.png"),
+            "2": PhotoImage(file="images/notes/third-line.png"),
+            "3": PhotoImage(file="images/notes/third-space.png"),
+            "4": PhotoImage(file="images/notes/fourth-line.png"),
+            "5": PhotoImage(file="images/notes/fourth-space.png"),
+            "6": PhotoImage(file="images/notes/fifth-line.png"),
+            "7": PhotoImage(file="images/notes/first-overspace.png"),
+            "8": PhotoImage(file="images/notes/first-subline.png"),
+            "9": PhotoImage(file="images/notes/first-subspace.png"),
+            "0": PhotoImage(file="images/notes/first-line.png"),
+            "Q": PhotoImage(file="images/notes/first-space.png"),
+            "W": PhotoImage(file="images/notes/second-line.png"),
+            "E": PhotoImage(file="images/notes/second-space.png"),
+            "R": PhotoImage(file="images/notes/third-line.png"),
+            "T": PhotoImage(file="images/notes/third-space.png"),
+            "Y": PhotoImage(file="images/notes/fourth-line.png"),
+            "U": PhotoImage(file="images/notes/fourth-space.png"),
+            "I": PhotoImage(file="images/notes/fifth-line.png"),
+            "O": PhotoImage(file="images/notes/first-overspace.png"),
+            "P": PhotoImage(file="images/notes/first-overline.png"),
+            "A": PhotoImage(file="images/notes/second-overspace.png"),
+            "S": PhotoImage(file="images/notes/second-overline.png")
         }
         self.notes = []
         self.labels = [
@@ -34,35 +54,32 @@ class Harp:
     def play_sound(self, sound, user_input):
         self.notes.append(user_input)
         self.rerender_notes()
-        if not pygame.mixer.get_busy():
-            sound.play(loops=0, maxtime=0, fade_ms=0)
-            self.last_key = user_input
 
     @staticmethod
     def load_sounds(musical_instrument):
         array = {
-            '1': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'A.wav')),
-            '2': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'A1.wav')),
-            '3': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'A2.wav')),
-            '4': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'C.wav')),
-            '5': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'C1.wav')),
-            '6': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'C2.wav')),
-            '7': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'C3.wav')),
-            '8': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'D.wav')),
+            '1': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'C.wav')),
+            '2': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'D.wav')),
+            '3': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'E.wav')),
+            '4': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'F.wav')),
+            '5': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'G.wav')),
+            '6': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'A.wav')),
+            '7': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'H.wav')),
+            '8': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'C1.wav')),
             '9': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'D1.wav')),
-            '0': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'D2.wav')),
-            'Q': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'E.wav')),
-            'W': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'E1.wav')),
-            'E': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'E2.wav')),
-            'R': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'F.wav')),
-            'T': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'F1.wav')),
-            'Y': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'F2.wav')),
-            'U': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'test.wav')),
-            'I': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'G1.wav')),
+            '0': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'E1.wav')),
+            'Q': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'F1.wav')),
+            'W': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'G1.wav')),
+            'E': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'A1.wav')),
+            'R': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'H1.wav')),
+            'T': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'C2.wav')),
+            'Y': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'D2.wav')),
+            'U': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'E2.wav')),
+            'I': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'F2.wav')),
             'O': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'G2.wav')),
-            'P': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'H.wav')),
-            'A': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'H1.wav')),
-            'S': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'H2.wav'))
+            'P': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'A2.wav')),
+            'A': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'H2.wav')),
+            'S': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'C3.wav'))
         }
         return array
 
