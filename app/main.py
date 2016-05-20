@@ -14,13 +14,13 @@ class Harp:
         self.menu = ["Menu", "Bass", "Church", "Glitch", "Glow", "Iron", "Techno", "Steal", "Violin"]
         self.empty = PhotoImage(file="images/notes/empty.png")
         self.note_images = {
-            "1": PhotoImage(file="images/notes/second-space.png"),
-            "2": PhotoImage(file="images/notes/third-line.png"),
-            "3": PhotoImage(file="images/notes/third-space.png"),
-            "4": PhotoImage(file="images/notes/fourth-line.png"),
-            "5": PhotoImage(file="images/notes/fourth-space.png"),
-            "6": PhotoImage(file="images/notes/fifth-line.png"),
-            "7": PhotoImage(file="images/notes/first-overspace.png"),
+            "1": PhotoImage(file="images/notes/second-space-bass.png"),
+            "2": PhotoImage(file="images/notes/third-line-bass.png"),
+            "3": PhotoImage(file="images/notes/third-space-bass.png"),
+            "4": PhotoImage(file="images/notes/fourth-line-bass.png"),
+            "5": PhotoImage(file="images/notes/fourth-space-bass.png"),
+            "6": PhotoImage(file="images/notes/fifth-line-bass.png"),
+            "7": PhotoImage(file="images/notes/first-overspace-bass.png"),
             "8": PhotoImage(file="images/notes/first-subline.png"),
             "9": PhotoImage(file="images/notes/first-subspace.png"),
             "0": PhotoImage(file="images/notes/first-line.png"),
@@ -36,6 +36,30 @@ class Harp:
             "P": PhotoImage(file="images/notes/first-overline.png"),
             "A": PhotoImage(file="images/notes/second-overspace.png"),
             "S": PhotoImage(file="images/notes/second-overline.png")
+        }
+        self.notes_keys = {
+            "1": "C",
+            "2": "D",
+            "3": "E",
+            "4": "F",
+            "5": "G",
+            "6": "A",
+            "7": "H",
+            "8": "C1",
+            "9": "D1",
+            "0": "E1",
+            "Q": "F1",
+            "W": "G1",
+            "E": "A1",
+            "R": "H1",
+            "T": "C2",
+            "Y": "D2",
+            "U": "E2",
+            "I": "F2",
+            "O": "G2",
+            "P": "A2",
+            "A": "H2",
+            "S": "C3"
         }
         self.notes = []
         self.labels = [
@@ -53,35 +77,8 @@ class Harp:
 
     def play_sound(self, sound, user_input):
         self.notes.append(user_input)
+        self.note_label.__setitem__("text", self.notes_keys.get(user_input))
         self.rerender_notes()
-
-    @staticmethod
-    def load_sounds(musical_instrument):
-        array = {
-            '1': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'C.wav')),
-            '2': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'D.wav')),
-            '3': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'E.wav')),
-            '4': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'F.wav')),
-            '5': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'G.wav')),
-            '6': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'A.wav')),
-            '7': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'H.wav')),
-            '8': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'C1.wav')),
-            '9': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'D1.wav')),
-            '0': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'E1.wav')),
-            'Q': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'F1.wav')),
-            'W': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'G1.wav')),
-            'E': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'A1.wav')),
-            'R': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'H1.wav')),
-            'T': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'C2.wav')),
-            'Y': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'D2.wav')),
-            'U': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'E2.wav')),
-            'I': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'F2.wav')),
-            'O': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'G2.wav')),
-            'P': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'A2.wav')),
-            'A': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'H2.wav')),
-            'S': pygame.mixer.Sound(os.path.join('../', 'sounds', musical_instrument, 'C3.wav'))
-        }
-        return array
 
     def add_empty_stave(self):
         padding = 75
@@ -93,7 +90,7 @@ class Harp:
         self.items_font = Font(family="Sans", size=-55)
         self.instruments_font = Font(family="Sans", size=-250)
 
-        self.note_label = Label(self.main_window, text="a", font=self.instruments_font, foreground='#7d7d7d')
+        self.note_label = Label(self.main_window, text="", font=self.instruments_font, foreground='#7d7d7d')
         self.note_label.grid(row=0, column=1, sticky=NW, padx=(50, 0), pady=(300, 0))
 
         self.instrument_label = Label(self.main_window, font=self.instruments_font, foreground='#7d7d7d', borderwidth=0,

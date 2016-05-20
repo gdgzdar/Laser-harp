@@ -15,6 +15,8 @@ class Harp:
         self.last_booleans = [False, False, False, False, False, False, False, False, False, False, False, False,
                               False, False, False, False, False, False, False, False, False, False]
         self.sounds = []
+        self.played_sounds = []
+        self.x = 0
         #self.data = ''
         #for x in range(10):
         #    self.data = self.arduino.readline()
@@ -35,8 +37,17 @@ class Harp:
     def play_sound(self):
         for z in range(len(self.actual_booleans)):
             if self.actual_booleans[z] == True and not self.actual_booleans[z] == self.last_booleans[z]:
+                self.x += 1
+                if self.x >= 10:
+                    self.played_sounds[0].player.stop()
+                    self.played_sounds[0].player.delete()
+                    self.played_sounds[0].sound.delete()
+                    self.played_sounds[0].listener.delete()
+                    self.played_sounds.remove(self.played_sounds[0])
+                    self.x -= 1
+                self.played_sounds.append(self.sounds[z])
                 self.sounds[z].play()
-                print(z)
+                print(self.x)
 
     def generate_random_sound(self):
         random_position = randint(0, 22)
@@ -53,13 +64,13 @@ class Harp:
 if __name__ == '__main__':
     notes = ['A', 'A1', 'A2', 'C', 'C1', 'C2', 'C3', 'D', 'D1', 'D2', 'E', 'E1', 'E2', 'F', 'F1', 'F2', 'G', 'G1',
              'G2', 'H', 'H1', 'H2']
-    harp = Harp('Bass', notes)
+    harp = Harp('Iron', notes)
     harp.load_sounds()
     while True:
         harp.generate_random_sound()
         harp.parse_booleans()
         harp.play_sound()
-        sleep(0.1)
+        sleep(0.3)
 
 
 
