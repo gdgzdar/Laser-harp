@@ -1,6 +1,6 @@
 from tkFont import Font
 
-from tkinter import *
+from Tkinter import *
 
 main_window = Tk()
 

@@ -11,14 +11,18 @@ import sys
 import os
 
 
-class Example(object):
-    def __init__(self, path_to_file, i):
-        # load listener
-        self.listener = listener()
+class Sound(object):
+    def __init__(self, path_to_file, index):
+        self.path_to_file = path_to_file# load listener
+        self.index = index
+
+
+    def play(self):
+        self.listener = Listener()
         # initialize sound
-        self.sound = Load_sound(path_to_file)
+        self.sound = LoadSound(self.path_to_file, self.index)
         # load sound player
-        self.player = Player(i)
+        self.player = Player(self.index)
 
         # set listener position
         self.listener.position = (320, 240, 0)
@@ -32,7 +36,6 @@ class Example(object):
         self.player.rolloff = 0.01
         # play sound
         self.player.play()
-
         # stop player
 
     #        self.player.stop()
@@ -44,7 +47,7 @@ class Example(object):
 
 
 # load a listener to load and play sounds.
-class listener(object):
+class Listener(object):
     def __init__(self):
         # load device/context/listener
         self.device = alc.alcOpenDevice(None)
@@ -69,8 +72,8 @@ class listener(object):
 
 
 # load and store a wav file into an openal buffer
-class Load_sound(object):
-    def __init__(self, filename):
+class LoadSound(object):
+    def __init__(self, filename, index):
         self.name = filename
         # load/set wav file
         if len(sys.argv) < 2:
@@ -96,7 +99,8 @@ class Load_sound(object):
         }
         alformat = formatmap[(channels, bitrate)]
 
-        self.buf = al.ALuint(0)
+        self.buf = al.ALuint(index)
+        print(self.buf)
         al.alGenBuffers(1, self.buf)
         # allocate buffer space to: buffer, format, data, len(data), and samplerate
         al.alBufferData(self.buf, alformat, wavbuf, len(wavbuf), samplerate)
@@ -109,16 +113,16 @@ class Load_sound(object):
 # load sound buffers into an openal source player to play them
 class Player(object):
     # load default settings
-    def __init__(self, i):
+    def __init__(self, index):
         # load source player
-        self.source = al.ALuint(i)
+        self.source = al.ALuint(index)
         al.alGenSources(1, self.source)
         # disable rolloff factor by default
-        al.alSourcef(self.source, al.AL_ROLLOFF_FACTOR, 0)
+        al.alSourcef(self.source, al.AL_ROLLOFF_FACTOR, index)
         # disable source relative by default
-        al.alSourcei(self.source, al.AL_SOURCE_RELATIVE, 0)
+        al.alSourcei(self.source, al.AL_SOURCE_RELATIVE, index)
         # capture player state buffer
-        self.state = al.ALint(i)
+        self.state = al.ALint(index)
         # set internal variable tracking
         self._volume = 1.0
         self._pitch = 1.0
