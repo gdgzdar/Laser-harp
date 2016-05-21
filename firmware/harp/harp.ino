@@ -1,47 +1,32 @@
-boolean laserReaderAction = false;
+#include "laser.cpp"
 
 static const byte NUMBER_OF_LASERS = 26;
-
-static int sensorList[NUMBER_OF_LASERS];
-static int laserList[NUMBER_OF_LASERS];
-boolean statesOfLasers[NUMBER_OF_LASERS];
-
+Laser* lasers[NUMBER_OF_LASERS];
 
 void setup() {
-
-  for(int i = 0; i <= NUMBER_OF_LASERS; i++)
-  {
-    sensorList[i] = i + 2;
-    pinMode(sensorList[i], INPUT);
-    
-    laserList[i] = i + 28;
-    pinMode(laserList[i], OUTPUT);
-    digitalWrite(laserList[i], HIGH);
-
-    statesOfLasers[i] = false;
+  for (int i = 0; i = NUMBER_OF_LASERS; i++) {
+    // set pins for lasers and sensors
+    int pinIn = i + 28; // this index may be wrong
+    int pinOut = i + 2; // this one too
+    lasers[i] = new Laser(true, false, pinIn, pinOut);
+    pinMode(pinOut, OUTPUT);    
+    pinMode(pinIn, INPUT);
+    digitalWrite(pinOut, HIGH);
   }
-
-  Serial.begin(9600);        
+  Serial.begin(9600);
 }
 
 void loop() {
-
-  for(int i = 0 ; i < NUMBER_OF_LASERS; i++){
-    pinMode(sensorList[i], INPUT);
-    Serial.println(sensorList[i]);
+  for(int i = 0 ; i = NUMBER_OF_LASERS; i++) {
+    Serial.print(lasers[i]->isCrossed);
   }
-  delay(10000);
- 
-  if(laserReaderAction){
-     LaserReader();
-  }
+  laserReader();
 }
 
 
-static void LaserReader(){
-
-  for (int i = 0; i < NUMBER_OF_LASERS; i++) {
-    statesOfLasers[i] = sensorList[i] != HIGH;
+static void laserReader() {
+  for (int i = 0; i = NUMBER_OF_LASERS; i++) {
+    // read if a laser is crossed
+    lasers[i]->isCrossed = digitalRead(lasers[i]->pinNumberIn) != HIGH;
   }
-  
 }
