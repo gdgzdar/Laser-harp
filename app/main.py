@@ -1,8 +1,28 @@
-import os
-import pygame
 from tkFont import Font
-from sound_player import *
+
 from tkinter import *
+
+from sound_player import *
+
+
+class Dialog:
+    def __init__(self, parent):
+        top = self.top = Toplevel(parent)
+        self.top.geometry("%dx%d%+d%+d" % (500, 100, 250, 125))
+
+        variable = StringVar(top)
+        variable.set("a")
+
+        OptionMenu(top, variable, "a", "b").grid(row=0)
+
+        self.e1 = Entry(top)
+
+        self.e1.grid(row=0, column=1)
+        b = Button(top, text="OK", command=self.ok)
+        b.grid(row=2, columnspan=2)
+
+    def ok(self):
+        self.top.destroy()
 
 
 class Harp:
@@ -13,55 +33,55 @@ class Harp:
         self.menu = ["Menu", "Bass", "Church", "Glitch", "Glow", "Iron", "Techno", "Steal", "Violin"]
         self.empty = PhotoImage(file="images/notes/empty.png")
         self.note_images = {
-            "1": PhotoImage(file="images/notes/second-space-bass.png"),
-            "2": PhotoImage(file="images/notes/third-line-bass.png"),
-            "3": PhotoImage(file="images/notes/third-space-bass.png"),
-            "4": PhotoImage(file="images/notes/fourth-line-bass.png"),
-            "5": PhotoImage(file="images/notes/fourth-space-bass.png"),
-            "6": PhotoImage(file="images/notes/fifth-line-bass.png"),
-            "7": PhotoImage(file="images/notes/first-overspace-bass.png"),
-            "8": PhotoImage(file="images/notes/first-subline.png"),
-            "9": PhotoImage(file="images/notes/first-subspace.png"),
-            "0": PhotoImage(file="images/notes/first-line.png"),
-            "Q": PhotoImage(file="images/notes/first-space.png"),
-            "W": PhotoImage(file="images/notes/second-line.png"),
-            "E": PhotoImage(file="images/notes/second-space.png"),
-            "R": PhotoImage(file="images/notes/third-line.png"),
-            "T": PhotoImage(file="images/notes/third-space.png"),
-            "Y": PhotoImage(file="images/notes/fourth-line.png"),
-            "U": PhotoImage(file="images/notes/fourth-space.png"),
-            "I": PhotoImage(file="images/notes/fifth-line.png"),
-            "O": PhotoImage(file="images/notes/first-overspace.png"),
-            "P": PhotoImage(file="images/notes/first-overline.png"),
-            "A": PhotoImage(file="images/notes/second-overspace.png"),
-            "S": PhotoImage(file="images/notes/second-overline.png")
+            "Q": PhotoImage(file=os.path.join('images', 'notes', 'second-space-bass.png')),
+            "W": PhotoImage(file=os.path.join('images', 'notes', 'third-line-bass.png')),
+            "E": PhotoImage(file=os.path.join('images', 'notes', 'third-space-bass.png')),
+            "R": PhotoImage(file=os.path.join('images', 'notes', 'fourth-line-bass.png')),
+            "T": PhotoImage(file=os.path.join('images', 'notes', 'fourth-space-bass.png')),
+            "Y": PhotoImage(file=os.path.join('images', 'notes', 'fifth-line-bass.png')),
+            "U": PhotoImage(file=os.path.join('images', 'notes', 'first-overspace-bass.png')),
+            "I": PhotoImage(file=os.path.join('images', 'notes', 'first-subline.png')),
+            "O": PhotoImage(file=os.path.join('images', 'notes', 'first-subspace.png')),
+            "P": PhotoImage(file=os.path.join('images', 'notes', 'first-line.png')),
+            "[": PhotoImage(file=os.path.join('images', 'notes', 'first-space.png')),
+            "A": PhotoImage(file=os.path.join('images', 'notes', 'second-line.png')),
+            "S": PhotoImage(file=os.path.join('images', 'notes', 'second-space.png')),
+            "D": PhotoImage(file=os.path.join('images', 'notes', 'third-line.png')),
+            "F": PhotoImage(file=os.path.join('images', 'notes', 'third-space.png')),
+            "G": PhotoImage(file=os.path.join('images', 'notes', 'fourth-line.png')),
+            "H": PhotoImage(file=os.path.join('images', 'notes', 'fourth-space.png')),
+            "J": PhotoImage(file=os.path.join('images', 'notes', 'fifth-line.png')),
+            "K": PhotoImage(file=os.path.join('images', 'notes', 'first-overspace.png')),
+            "L": PhotoImage(file=os.path.join('images', 'notes', 'first-overline.png')),
+            ";": PhotoImage(file=os.path.join('images', 'notes', 'second-overspace.png')),
+            "'": PhotoImage(file=os.path.join('images', 'notes', 'second-overline.png'))
         }
         self.notes_keys = {
-            "1": "C",
-            "2": "D",
-            "3": "E",
-            "4": "F",
-            "5": "G",
-            "6": "A",
-            "7": "H",
-            "8": "C1",
-            "9": "D1",
-            "0": "E1",
-            "Q": "F1",
-            "W": "G1",
-            "E": "A1",
-            "R": "H1",
-            "T": "C2",
-            "Y": "D2",
-            "U": "E2",
-            "I": "F2",
-            "O": "G2",
-            "P": "A2",
-            "A": "H2",
-            "S": "C3"
+            "Q": "C",
+            "W": "D",
+            "E": "E",
+            "R": "F",
+            "T": "G",
+            "Y": "A",
+            "U": "H",
+            "I": "C1",
+            "O": "D1",
+            "P": "E1",
+            "[": "F1",
+            "A": "G1",
+            "S": "A1",
+            "D": "H1",
+            "F": "C2",
+            "G": "D2",
+            "H": "E2",
+            "J": "F2",
+            "K": "G2",
+            "L": "A2",
+            ";": "H2",
+            "'": "C3"
         }
-        self.keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
-                     "A", "S"]
+        self.keys = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "A", "S", "D", "F", "G", "H", "J", "K", "L",
+                     ";", "'"]
         self.notes = []
         self.notes_playing = 0
         self.played_sounds = []
@@ -77,32 +97,42 @@ class Harp:
             Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
             Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0)
         ]
+        self.instrument_images = {
+            "Bass": PhotoImage(file=os.path.join('images', 'instruments', 'bass.png')),
+            "Church": PhotoImage(file=os.path.join('images', 'instruments', 'church.png')),
+            "Glitch": PhotoImage(file=os.path.join('images', 'instruments', 'glitch.png')),
+            "Glow": PhotoImage(file=os.path.join('images', 'instruments', 'glow.png')),
+            "Iron": PhotoImage(file=os.path.join('images', 'instruments', 'iron.png')),
+            "Steal": PhotoImage(file=os.path.join('images', 'instruments', 'steal.png')),
+            "Techno": PhotoImage(file=os.path.join('images', 'instruments', 'techno.png')),
+            "Violin": PhotoImage(file=os.path.join('images', 'instruments', 'violin.png'))
+        }
         self.load_sounds()
 
     def load_sounds(self):
         self.sounds = {
-            "1": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'C.wav'), 0),
-            "2": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'D.wav'), 1),
-            "3": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'E.wav'), 2),
-            "4": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'F.wav'), 3),
-            "5": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'G.wav'), 4),
-            "6": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'A.wav'), 5),
-            "7": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'H.wav'), 6),
-            "8": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'C1.wav'), 7),
-            "9": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'D1.wav'), 8),
-            "0": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'E1.wav'), 9),
-            "Q": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'F1.wav'), 10),
-            "W": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'G1.wav'), 11),
-            "E": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'A1.wav'), 12),
-            "R": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'H1.wav'), 13),
-            "T": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'C2.wav'), 14),
-            "Y": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'D2.wav'), 15),
-            "U": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'E2.wav'), 16),
-            "I": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'F2.wav'), 17),
-            "O": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'G2.wav'), 18),
-            "P": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'A2.wav'), 19),
-            "A": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'H2.wav'), 20),
-            "S": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'C3.wav'), 21)
+            "Q": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'C.wav'), 0),
+            "W": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'D.wav'), 1),
+            "E": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'E.wav'), 2),
+            "R": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'F.wav'), 3),
+            "T": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'G.wav'), 4),
+            "Y": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'A.wav'), 5),
+            "U": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'H.wav'), 6),
+            "I": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'C1.wav'), 7),
+            "O": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'D1.wav'), 8),
+            "P": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'E1.wav'), 9),
+            "[": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'F1.wav'), 10),
+            "A": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'G1.wav'), 11),
+            "S": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'A1.wav'), 12),
+            "D": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'H1.wav'), 13),
+            "F": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'C2.wav'), 14),
+            "G": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'D2.wav'), 15),
+            "H": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'E2.wav'), 16),
+            "J": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'F2.wav'), 17),
+            "K": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'G2.wav'), 18),
+            "L": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'A2.wav'), 19),
+            ";": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'H2.wav'), 20),
+            "'": Sound(os.path.join('../', 'sounds', self.musical_instrument, 'C3.wav'), 21)
         }
 
     def play_sound(self, sound, user_input):
@@ -134,9 +164,8 @@ class Harp:
         self.note_label = Label(self.main_window, text="", font=self.instruments_font, foreground='#7d7d7d')
         self.note_label.grid(row=0, column=1, sticky=NW, padx=(50, 0), pady=(300, 0))
 
-        self.instrument_label = Label(self.main_window, font=self.instruments_font, foreground='#7d7d7d', borderwidth=0,
-                                      highlightthickness=0, text=self.musical_instrument[:1])
-        self.instrument_label.grid(row=0, column=1, sticky=NW, padx=(660, 0), pady=(350, 0))
+        self.instrument_label = Label(self.main_window, image=self.instrument_images.get("Bass"))
+        self.instrument_label.grid(row=0, column=1, sticky=E, padx=(0, 700), pady=(0, 400))
         self.side_menu = Listbox(self.main_window, selectmode=EXTENDED, height=20, width=10, bg='#3f51b5',
                                  foreground="white",
                                  font=self.items_font)
@@ -164,8 +193,11 @@ class Harp:
     def instrument_changed(self, new_instrument):
         if not new_instrument == "Menu":
             self.musical_instrument = new_instrument
-            self.instrument_label.config(text=new_instrument[:1])
+            self.instrument_label.config(image=self.instrument_images.get(new_instrument))
             self.load_sounds()
+        else:
+            dialog = Dialog(self.main_window)
+            self.main_window.wait_window(dialog.top)
 
     def rerender_notes(self):
         a = 0
