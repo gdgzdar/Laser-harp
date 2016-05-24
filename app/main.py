@@ -1,6 +1,10 @@
 from tkFont import Font
 
-from tkinter import *
+try:
+    from Tkinter import *
+except ImportError:
+    # for Python3
+    from tkinter import *
 
 from sound_player import *
 

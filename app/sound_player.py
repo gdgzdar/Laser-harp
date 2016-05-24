@@ -1,6 +1,11 @@
 # using Pyglet
-from openal import al
-from openal import alc
+try:
+    from openal import al
+    from openal import alc
+except ImportError:
+    from pyglet.media.drivers.openal import al
+    from pyglet.media.drivers.openal import alc
+    
 # using PyAL
 ##from openal import al, alc
 
