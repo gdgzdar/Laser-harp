@@ -1,11 +1,10 @@
 from tkFont import Font
-
+import alsaaudio
 try:
     from Tkinter import *
 except ImportError:
     # for Python3
     from tkinter import *
-
 from sound_player import *
 
 
@@ -184,6 +183,12 @@ class Harp:
 
         self.add_empty_stave()
 
+        self.sound_scale = Scale(self.main_window, from_=100, to=0, orient=VERTICAL, activebackground="#4c5fea")
+        self.sound_scale.set(50)
+        self.scale_changed()
+        self.sound_scale.configure(command=self.check_scale(self.sound_scale.get()))
+        self.sound_scale.grid(row=0, column=1, sticky=E, padx=(0, 200), pady=(0, 350))
+
         logo_image = PhotoImage(file=os.path.join("images", "GDG_logo.png"))
         logo_label = Label(self.main_window, image=logo_image)
         logo_label.grid(row=0, column=1, sticky=N)
@@ -218,6 +223,20 @@ class Harp:
         for label in self.labels:
             label.grid(row=0, column=1, sticky=NW, padx=(padding, 0), pady=(650, 0))
             padding += 130
+
+    def check_scale(self, last):
+        if not last == self.sound_scale.get():
+            last = self.sound_scale.get()
+            self.scale_changed()
+        self.main_window.after(500, self.check_scale, last)
+
+    def scale_changed(self):
+        try:
+            from subprocess import call
+            call(["amixer", "-D", "pulse", "sset", "Master", str(self.sound_scale.get()) + "%"])
+            print(self.sound_scale.get())
+        except ImportError:
+            print("Windows")
 
 
 if __name__ == "__main__":
