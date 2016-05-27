@@ -3,5 +3,5 @@
 The application requires following:
 * Python 2.7
 * Tkinter (8.6 and up)
-* Openal packages
-* Serial
+* Openal packages for python
+* Serial library for python
