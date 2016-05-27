@@ -1,5 +1,5 @@
 from tkFont import Font
-import alsaaudio
+
 try:
     from Tkinter import *
 except ImportError:
@@ -11,18 +11,27 @@ from sound_player import *
 class Dialog:
     def __init__(self, parent):
         top = self.top = Toplevel(parent)
-        self.top.geometry("%dx%d%+d%+d" % (500, 100, 250, 125))
+        top.resizable(width=FALSE, height=FALSE)
 
         variable = StringVar(top)
         variable.set("a")
 
-        OptionMenu(top, variable, "a", "b").grid(row=0)
-
-        self.e1 = Entry(top)
-
-        self.e1.grid(row=0, column=1)
-        b = Button(top, text="OK", command=self.ok)
-        b.grid(row=2, columnspan=2)
+        Label(top, text="Arduino on port: ", font=Font(family="Sans", size=-55), foreground='#7d7d7d').grid(row=0,
+                                                                                                            column=0)
+        dropdown = OptionMenu(top, variable, "a", "b")
+        dropdown.config(font=Font(family="Sans", size=-55))
+        dropdown.config(bg="#3f51b5")
+        dropdown.config(foreground="white")
+        dropdown.config(activeforeground="white")
+        dropdown.config(activebackground="#3f51b5")
+        dropdown.grid(row=0, column=1)
+        button = Button(top, text="OK", command=self.ok)
+        button.config(bg="#3f51b5")
+        button.config(foreground="white")
+        button.config(activeforeground="white")
+        button.config(activebackground="#3f51b5")
+        button.config(font=Font(family="Sans", size=-55))
+        button.grid(row=1, column=0, columnspan=2)
 
     def ok(self):
         self.top.destroy()
