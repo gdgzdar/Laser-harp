@@ -19,6 +19,7 @@ Play sound async is  completed
 
 Program GUI is 50% completed
 
-Sound Librery is 20% completed
+Sound Librery now has 8 instruments
+                      =============  
 
 
