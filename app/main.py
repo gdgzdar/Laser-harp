@@ -1,5 +1,10 @@
 from tkFont import Font
-from tkinter import *
+import alsaaudio
+try:
+    from Tkinter import *
+except ImportError:
+    # for Python3
+    from tkinter import *
 from sound_player import *
 
 
@@ -179,6 +184,8 @@ class Harp:
         self.add_empty_stave()
 
         self.sound_scale = Scale(self.main_window, from_=100, to=0, orient=VERTICAL, activebackground="#4c5fea")
+        self.sound_scale.set(50)
+        self.scale_changed()
         self.sound_scale.configure(command=self.check_scale(self.sound_scale.get()))
         self.sound_scale.grid(row=0, column=1, sticky=E, padx=(0, 200), pady=(0, 350))
 
