@@ -1,5 +1,4 @@
 from tkFont import Font
-import alsaaudio
 try:
     from Tkinter import *
 except ImportError:
