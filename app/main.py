@@ -1,5 +1,8 @@
 from tkFont import Font
+<<<<<<< HEAD
 
+=======
+>>>>>>> d005aea5567cb4092251976329400ea35333906a
 try:
     from Tkinter import *
 except ImportError:
