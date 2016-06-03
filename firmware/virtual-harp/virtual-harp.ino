@@ -1,24 +1,17 @@
-byte byteRead;
-int randNumber = 0;
-boolean laserField[26] = {false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
+const int NUMBER_OF_STRINGS = 26;
 
-void setup() {                
-// Turn the Serial Protocol ON
+void setup() {
   Serial.begin(9600);
 }
 
 void loop() {
-
-    laserField[random(26)] = random(2);
-
-
-     for (int i = 0; i < 26; i++) {
-        Serial.print(laserField[i]);
-     }
-     
-      Serial.println("");
-      for (int i = 0; i < 26; i++) {
-        laserField[i] = false;
-    }
-    
+  for (int i = 0; i < NUMBER_OF_STRINGS; i++) {
+    Serial.print(int(isTheStringPlaying()));
+  }
+  Serial.println();
 }
+
+boolean isTheStringPlaying() {
+  return random(20) > 18;
+}
+
