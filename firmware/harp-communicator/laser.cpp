@@ -3,16 +3,15 @@ public:
  
   bool isOn;
   bool isCrossed;
-  int pinNumberIn;
-  int pinNumberOut;
+  int sensorPin;
+  int laserPin;
 
 
-  Laser(bool isOn, bool isCrossed, int pinNumberIn, int pinNumberOut) {
+  Laser(bool isOn, bool isCrossed, int sensorPin, int laserPin) {
     this->isOn = isOn;
     this->isCrossed = isCrossed;
-    this->pinNumberIn = pinNumberIn;
-    this->pinNumberOut = pinNumberOut;
+    this->sensorPin = sensorPin;
+    this->laserPin = laserPin;
   }
 
 };
-
