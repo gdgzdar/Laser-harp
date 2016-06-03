@@ -5,9 +5,9 @@ private:
 	int pinX;
 	int pinButton;
 
-	
-
 	bool buttonPushed;
+	const int joystickCenterValue = 500;
+	const int joystickTolerance = 400;
 
 public:
 	Joystick(int getPinY, int getPinX, int getPinButton) {
@@ -29,30 +29,25 @@ public:
 	}
 
 	char getY() {
-		int y = analogRead(pinY);
-
-		if (y < 112){
+		int y = getAnalogY();
+		if (y < (joystickCenterValue + joystickTolerance)) {
 			return 'L';
-		}else if (y > 912){
+		} else if (y < (joystickCenterValue - joystickTolerance)) {
 			return 'R';
-		}else{
+		} else {
 			return 'N';
 		}
-
 	}
 
 	char getX() {
-		int x = analogRead(pinX);
-
-		if (x < 112){
+		int x = getAnalogX();
+		if (x < (joystickCenterValue + joystickTolerance)) {
 			return 'U';
-		}else if (x > 912){
+		} else if (x > (joystickCenterValue - joystickTolerance)) {
 			return 'D';
-		}else{
+		} else {
 			return 'N';
 		}
 	}
-
-
 
 };
