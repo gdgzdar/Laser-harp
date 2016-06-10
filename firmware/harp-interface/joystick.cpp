@@ -32,9 +32,9 @@ public:
 	char getY() {
 		int y = getAnalogY();
 		if (y > (joystickCenterValue + joystickTolerance)) {
-			return 'L';
-		} else if (y < (joystickCenterValue - joystickTolerance)) {
 			return 'R';
+		} else if (y < (joystickCenterValue - joystickTolerance)) {
+			return 'L';
 		} else {
 			return 'N';
 		}
