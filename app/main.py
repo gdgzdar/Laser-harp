@@ -1,34 +1,32 @@
 from tkFont import Font
-<<<<<<< HEAD
+from PIL import Image, ImageTk
 
-=======
->>>>>>> d005aea5567cb4092251976329400ea35333906a
 try:
-    from Tkinter import *
+    import Tkinter as tk
 except ImportError:
     # for Python3
-    from tkinter import *
+    import tkinter as tk
 from sound_player import *
 
 
 class Dialog:
     def __init__(self, parent):
-        top = self.top = Toplevel(parent)
-        top.resizable(width=FALSE, height=FALSE)
+        top = self.top = tk.Toplevel(parent)
+        top.resizable(width=tk.FALSE, height=tk.FALSE)
 
-        variable = StringVar(top)
+        variable = tk.StringVar(top)
         variable.set("a")
 
-        Label(top, text="Arduino on port: ", font=Font(family="Sans", size=-55), foreground='#7d7d7d').grid(row=0,
-                                                                                                            column=0)
-        dropdown = OptionMenu(top, variable, "a", "b")
+        tk.Label(top, text="Arduino on port: ", font=Font(family="Sans", size=-55), foreground='#7d7d7d').grid(row=0,
+                                                                                                               column=0)
+        dropdown = tk.OptionMenu(top, variable, "a", "b")
         dropdown.config(font=Font(family="Sans", size=-55))
         dropdown.config(bg="#3f51b5")
         dropdown.config(foreground="white")
         dropdown.config(activeforeground="white")
         dropdown.config(activebackground="#3f51b5")
         dropdown.grid(row=0, column=1)
-        button = Button(top, text="OK", command=self.ok)
+        button = tk.Button(top, text="OK", command=self.ok)
         button.config(bg="#3f51b5")
         button.config(foreground="white")
         button.config(activeforeground="white")
@@ -44,33 +42,39 @@ class Harp:
     def __init__(self):
         self.last_key = 'last_key'
         self.musical_instrument = "Bass"
-        self.main_window = Tk()
+        self.main_window = tk.Tk()
+        self.width = self.main_window.winfo_screenwidth()
+        self.height = self.main_window.winfo_screenheight()
         self.menu = ["Menu", "Bass", "Church", "Glitch", "Glow", "Iron", "Techno", "Steal", "Violin"]
-        self.empty = PhotoImage(file="images/notes/empty.png")
-        self.note_images = {
-            "Q": PhotoImage(file=os.path.join('images', 'notes', 'second-space-bass.png')),
-            "W": PhotoImage(file=os.path.join('images', 'notes', 'third-line-bass.png')),
-            "E": PhotoImage(file=os.path.join('images', 'notes', 'third-space-bass.png')),
-            "R": PhotoImage(file=os.path.join('images', 'notes', 'fourth-line-bass.png')),
-            "T": PhotoImage(file=os.path.join('images', 'notes', 'fourth-space-bass.png')),
-            "Y": PhotoImage(file=os.path.join('images', 'notes', 'fifth-line-bass.png')),
-            "U": PhotoImage(file=os.path.join('images', 'notes', 'first-overspace-bass.png')),
-            "I": PhotoImage(file=os.path.join('images', 'notes', 'first-subline.png')),
-            "O": PhotoImage(file=os.path.join('images', 'notes', 'first-subspace.png')),
-            "P": PhotoImage(file=os.path.join('images', 'notes', 'first-line.png')),
-            "[": PhotoImage(file=os.path.join('images', 'notes', 'first-space.png')),
-            "A": PhotoImage(file=os.path.join('images', 'notes', 'second-line.png')),
-            "S": PhotoImage(file=os.path.join('images', 'notes', 'second-space.png')),
-            "D": PhotoImage(file=os.path.join('images', 'notes', 'third-line.png')),
-            "F": PhotoImage(file=os.path.join('images', 'notes', 'third-space.png')),
-            "G": PhotoImage(file=os.path.join('images', 'notes', 'fourth-line.png')),
-            "H": PhotoImage(file=os.path.join('images', 'notes', 'fourth-space.png')),
-            "J": PhotoImage(file=os.path.join('images', 'notes', 'fifth-line.png')),
-            "K": PhotoImage(file=os.path.join('images', 'notes', 'first-overspace.png')),
-            "L": PhotoImage(file=os.path.join('images', 'notes', 'first-overline.png')),
-            ";": PhotoImage(file=os.path.join('images', 'notes', 'second-overspace.png')),
-            "'": PhotoImage(file=os.path.join('images', 'notes', 'second-overline.png'))
-        }
+        empty_image = Image.open("images/notes/empty.png").resize(
+            (int(0.06770833333 * self.width + 1), int(0.363888889 * self.height)))
+        self.empty = ImageTk.PhotoImage(empty_image)
+        self.path_to_notes = [
+            os.path.join('images', 'notes', 'second-space-bass.png'),
+            os.path.join('images', 'notes', 'third-line-bass.png'),
+            os.path.join('images', 'notes', 'third-space-bass.png'),
+            os.path.join('images', 'notes', 'fourth-line-bass.png'),
+            os.path.join('images', 'notes', 'fourth-space-bass.png'),
+            os.path.join('images', 'notes', 'fifth-line-bass.png'),
+            os.path.join('images', 'notes', 'first-overspace-bass.png'),
+            os.path.join('images', 'notes', 'first-subline.png'),
+            os.path.join('images', 'notes', 'first-subspace.png'),
+            os.path.join('images', 'notes', 'first-line.png'),
+            os.path.join('images', 'notes', 'first-space.png'),
+            os.path.join('images', 'notes', 'second-line.png'),
+            os.path.join('images', 'notes', 'second-space.png'),
+            os.path.join('images', 'notes', 'third-line.png'),
+            os.path.join('images', 'notes', 'third-space.png'),
+            os.path.join('images', 'notes', 'fourth-line.png'),
+            os.path.join('images', 'notes', 'fourth-space.png'),
+            os.path.join('images', 'notes', 'fifth-line.png'),
+            os.path.join('images', 'notes', 'first-overspace.png'),
+            os.path.join('images', 'notes', 'first-overline.png'),
+            os.path.join('images', 'notes', 'second-overspace.png'),
+            os.path.join('images', 'notes', 'second-overline.png')
+        ]
+        self.keys = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "A", "S", "D", "F", "G", "H", "J", "K", "L",
+                     ";", "'"]
         self.notes_keys = {
             "Q": "C",
             "W": "D",
@@ -95,32 +99,46 @@ class Harp:
             ";": "H2",
             "'": "C3"
         }
-        self.keys = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "A", "S", "D", "F", "G", "H", "J", "K", "L",
-                     ";", "'"]
+        self.note_images = {
+        }
+        i = 0
+        for key in self.keys:
+            empty_image = Image.open(self.path_to_notes[i]).resize(
+                (int(0.06770833333 * self.width + 1), int(0.363888889 * self.height)))
+            self.note_images[key] = ImageTk.PhotoImage(empty_image)
+            i += 1
         self.notes = []
         self.notes_playing = 0
         self.played_sounds = []
         self.labels = [
-            Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
-            Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
-            Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
-            Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
-            Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
-            Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
-            Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
-            Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
-            Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
-            Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0)
+            tk.Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
+            tk.Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
+            tk.Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
+            tk.Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
+            tk.Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
+            tk.Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
+            tk.Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
+            tk.Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
+            tk.Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0),
+            tk.Label(self.main_window, image=self.empty, borderwidth=0, highlightthickness=0)
         ]
         self.instrument_images = {
-            "Bass": PhotoImage(file=os.path.join('images', 'instruments', 'bass.png')),
-            "Church": PhotoImage(file=os.path.join('images', 'instruments', 'church.png')),
-            "Glitch": PhotoImage(file=os.path.join('images', 'instruments', 'glitch.png')),
-            "Glow": PhotoImage(file=os.path.join('images', 'instruments', 'glow.png')),
-            "Iron": PhotoImage(file=os.path.join('images', 'instruments', 'iron.png')),
-            "Steal": PhotoImage(file=os.path.join('images', 'instruments', 'steal.png')),
-            "Techno": PhotoImage(file=os.path.join('images', 'instruments', 'techno.png')),
-            "Violin": PhotoImage(file=os.path.join('images', 'instruments', 'violin.png'))
+            "Bass": ImageTk.PhotoImage(Image.open(os.path.join('images', 'instruments', 'bass.png')).resize(
+                (int(0.0984375 * self.width), int(0.125 * self.height)))),
+            "Church": ImageTk.PhotoImage(Image.open(os.path.join('images', 'instruments', 'church.png')).resize(
+                (int(0.0984375 * self.width), int(0.125 * self.height)))),
+            "Glitch": ImageTk.PhotoImage(Image.open(os.path.join('images', 'instruments', 'glitch.png')).resize(
+                (int(0.0984375 * self.width), int(0.125 * self.height)))),
+            "Glow": ImageTk.PhotoImage(Image.open(os.path.join('images', 'instruments', 'glow.png')).resize(
+                (int(0.0984375 * self.width), int(0.125 * self.height)))),
+            "Iron": ImageTk.PhotoImage(Image.open(os.path.join('images', 'instruments', 'iron.png')).resize(
+                (int(0.0984375 * self.width), int(0.125 * self.height)))),
+            "Steal": ImageTk.PhotoImage(Image.open(os.path.join('images', 'instruments', 'steal.png')).resize(
+                (int(0.0984375 * self.width), int(0.125 * self.height)))),
+            "Techno": ImageTk.PhotoImage(Image.open(os.path.join('images', 'instruments', 'techno.png')).resize(
+                (int(0.0984375 * self.width), int(0.125 * self.height)))),
+            "Violin": ImageTk.PhotoImage(Image.open(os.path.join('images', 'instruments', 'violin.png')).resize(
+                (int(0.0984375 * self.width), int(0.125 * self.height))))
         }
         self.load_sounds()
 
@@ -151,7 +169,7 @@ class Harp:
         }
 
     def play_sound(self, sound, user_input):
-        if user_input in self.keys:
+        if user_input in self.note_images.keys():
             self.notes.append(user_input)
             self.note_label.__setitem__("text", self.notes_keys.get(user_input))
             self.rerender_notes()
@@ -167,23 +185,25 @@ class Harp:
             self.sounds.get(user_input).play()
 
     def add_empty_stave(self):
-        padding = 75
+        padding = 0.0390625 * self.width
         for label in self.labels:
-            label.grid(row=0, column=1, sticky=NW, padx=(padding, 0), pady=(650, 0))
-            padding += 130
+            label.grid(row=0, column=1, sticky=tk.NW, padx=(padding, 0), pady=(0.60185185185 * self.height, 0))
+            padding += 0.06770833333 * self.width
 
     def create_window(self):
         self.items_font = Font(family="Sans", size=-55)
-        self.instruments_font = Font(family="Sans", size=-250)
+        self.notes_font = Font(family="Sans", size=-int(self.height * 0.23148148148))
 
-        self.note_label = Label(self.main_window, text="", font=self.instruments_font, foreground='#7d7d7d')
-        self.note_label.grid(row=0, column=1, sticky=NW, padx=(50, 0), pady=(300, 0))
+        self.note_label = tk.Label(self.main_window, text="", font=self.notes_font, foreground='#7d7d7d')
+        self.note_label.grid(row=0, column=1, sticky=tk.NW, padx=(int(self.width * 0.02604166667), 0),
+                             pady=(int(self.height * 0.27777777778), 0))
 
-        self.instrument_label = Label(self.main_window, image=self.instrument_images.get("Bass"))
-        self.instrument_label.grid(row=0, column=1, sticky=E, padx=(0, 700), pady=(0, 400))
-        self.side_menu = Listbox(self.main_window, selectmode=EXTENDED, height=20, width=10, bg='#3f51b5',
-                                 foreground="white",
-                                 font=self.items_font)
+        self.instrument_label = tk.Label(self.main_window, image=self.instrument_images.get("Bass"))
+        self.instrument_label.grid(row=0, column=1, sticky=tk.NE, padx=(0, int(self.width * 0.3125)),
+                                   pady=(int(self.height * 0.34722222222), 0))
+        self.side_menu = tk.Listbox(self.main_window, selectmode=tk.EXTENDED, height=20, width=10, bg='#3f51b5',
+                                    foreground="white",
+                                    font=self.items_font, borderwidth=0, highlightthickness=0)
 
         for x in range(0, len(self.menu)):
             self.side_menu.insert(x, "  " + self.menu[x])
@@ -195,19 +215,19 @@ class Harp:
 
         self.add_empty_stave()
 
-        self.sound_scale = Scale(self.main_window, from_=100, to=0, orient=VERTICAL, activebackground="#4c5fea")
+        self.sound_scale = tk.Scale(self.main_window, from_=100, to=0, orient=tk.VERTICAL, activebackground="#4c5fea")
         self.sound_scale.set(50)
         self.scale_changed()
         self.sound_scale.configure(command=self.check_scale(self.sound_scale.get()))
-        self.sound_scale.grid(row=0, column=1, sticky=E, padx=(0, 200), pady=(0, 350))
+        self.sound_scale.grid(row=0, column=1, sticky=tk.NE, padx=(0, int(self.width * 0.05989583333)),
+                              pady=(int(self.height * 0.37037037037), 0))
 
-        logo_image = PhotoImage(file=os.path.join("images", "GDG_logo.png"))
-        logo_label = Label(self.main_window, image=logo_image)
-        logo_label.grid(row=0, column=1, sticky=N)
+        logo_image = ImageTk.PhotoImage(Image.open(os.path.join("images", "GDG_logo.png")).resize(
+            (int(0.78177083333 * self.width), int(0.24166666667 * self.height))))
+        logo_label = tk.Label(self.main_window, image=logo_image)
+        logo_label.grid(row=0, column=1, sticky=tk.N)
 
-        width = self.main_window.winfo_screenwidth()
-        height = self.main_window.winfo_screenheight()
-        self.main_window.geometry(str(width) + "x" + str(height))
+        self.main_window.geometry(str(self.width) + "x" + str(self.height))
         self.main_window.bind("<Key>", lambda event: self.play_sound(self.sounds.get(str(event.char)), str(event.char)))
         self.main_window.mainloop()
 
@@ -231,10 +251,10 @@ class Harp:
             b += 1
             if b == len(self.notes):
                 break
-        padding = 75
+        padding = 0.0390625 * self.width
         for label in self.labels:
-            label.grid(row=0, column=1, sticky=NW, padx=(padding, 0), pady=(650, 0))
-            padding += 130
+            label.grid(row=0, column=1, sticky=tk.NW, padx=(padding, 0), pady=(0.60185185185 * self.height, 0))
+            padding += 0.06770833333 * self.width
 
     def check_scale(self, last):
         if not last == self.sound_scale.get():
