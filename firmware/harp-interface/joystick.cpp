@@ -1,12 +1,13 @@
+#include <Arduino.h>
+
 class Joystick {
 private:
 
 	int pinY;
 	int pinX;
 	int pinButton;
-
-	bool buttonPushed;
-	const int joystickCenterValue = 500;
+  
+	const int joystickCenterValue = 530;
 	const int joystickTolerance = 400;
 
 public:
@@ -24,16 +25,16 @@ public:
 		return analogRead(pinX);
 	}
 
-	int getButtonState() {
-		return digitalRead(pinButton);
+	bool getButtonState() {
+		return (digitalRead(pinButton) == 0);
 	}
 
 	char getY() {
 		int y = getAnalogY();
-		if (y < (joystickCenterValue + joystickTolerance)) {
-			return 'L';
-		} else if (y < (joystickCenterValue - joystickTolerance)) {
+		if (y > (joystickCenterValue + joystickTolerance)) {
 			return 'R';
+		} else if (y < (joystickCenterValue - joystickTolerance)) {
+			return 'L';
 		} else {
 			return 'N';
 		}
@@ -41,9 +42,9 @@ public:
 
 	char getX() {
 		int x = getAnalogX();
-		if (x < (joystickCenterValue + joystickTolerance)) {
+		if (x > (joystickCenterValue + joystickTolerance)) {
 			return 'U';
-		} else if (x > (joystickCenterValue - joystickTolerance)) {
+		} else if (x < (joystickCenterValue - joystickTolerance)) {
 			return 'D';
 		} else {
 			return 'N';
