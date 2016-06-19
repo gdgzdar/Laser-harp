@@ -43,8 +43,8 @@ class Harp:
         self.last_key = 'last_key'
         self.musical_instrument = "Bass"
         self.main_window = tk.Tk()
-        self.width = self.main_window.winfo_screenwidth()
-        self.height = self.main_window.winfo_screenheight()
+        self.width = 1280#self.main_window.winfo_screenwidth()
+        self.height = 800#self.main_window.winfo_screenheight()
         self.menu = ["Menu", "Bass", "Church", "Glitch", "Glow", "Iron", "Techno", "Steal", "Violin"]
         empty_image = Image.open("images/notes/empty.png").resize(
             (int(0.06770833333 * self.width + 1), int(0.363888889 * self.height)))
@@ -191,7 +191,7 @@ class Harp:
             padding += 0.06770833333 * self.width
 
     def create_window(self):
-        self.items_font = Font(family="Sans", size=-55)
+        self.items_font = Font(family="Sans", size=-int(self.height * 0.05092592593))
         self.notes_font = Font(family="Sans", size=-int(self.height * 0.23148148148))
 
         self.note_label = tk.Label(self.main_window, text="", font=self.notes_font, foreground='#7d7d7d')
