@@ -1,5 +1,8 @@
 from tkFont import Font
+<<<<<<< Updated upstream
 from PIL import Image, ImageTk
+=======
+>>>>>>> Stashed changes
 
 try:
     import Tkinter as tk

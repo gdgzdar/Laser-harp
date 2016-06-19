@@ -6,12 +6,13 @@ void setup() {
 
 void loop() {
   for (int i = 0; i < NUMBER_OF_STRINGS; i++) {
-    Serial.print(int(isTheStringPlaying()));
+    Serial.print(int(isTheStringPlaying())); 
   }
   Serial.println();
+  
 }
 
 boolean isTheStringPlaying() {
-  return random(20) > 18;
+  return random(50) > 48;
 }
 
