@@ -2,7 +2,7 @@
 ##Project in progress...
 
 #contact:
-- j.cerny.zdar@gmail.com            - organisator
+- j.cerny.zdar@gmail.com            - organizator
 - gdgzdarnadsazavou@gmail.com       - company
 
 ##Hardware:
