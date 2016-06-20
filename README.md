@@ -1,6 +1,9 @@
 # Laser harp
 ##Project in progress...
 
+#contact:
+- j.cerny.zdar@gmail.com            - organisator
+- gdgzdarnadsazavou@gmail.com       - company
 
 ##Hardware:
 Sensor in frame is 100% completed
