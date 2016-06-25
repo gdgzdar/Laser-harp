@@ -1,7 +1,7 @@
 header {
-	background-color: #282A36;
-	color: white;
 	text-align: center;
+	color: white;
+	background-color: #282A36;
 }
 
 h1 {
@@ -10,13 +10,15 @@ h1 {
 }
 
 svg {
+	display: block;
 	width: 100%;
 	margin: 0 auto;
-	display: block;
 }
 
-rect, line {
+rect,
+line {
 	fill: none;
+
 	stroke: #D8D9E1;
 	stroke-width: 1.8px;
 	vector-effect: non-scaling-stroke;
@@ -24,8 +26,8 @@ rect, line {
 
 svg text {
 	font-weight: lighter;
-	fill: #C4C5CC;
 	word-spacing: 2px;
+	fill: #C4C5CC;
 }
 
 video {
@@ -36,28 +38,64 @@ video {
 	display: -webkit-flex;
 	display: flex;
 	flex-wrap: wrap;
+	margin: 3em 0;
 }
 
-.gallery a {
-	width: 100%;
+.gallery > * {
 	display: block;
-	padding: .2em;
 	box-sizing: border-box;
+	padding: .2em;
+	width: 100%;
 }
+
 
 img {
 	display: block;
 	width: 100%;
 }
 
+@media all and (min-width: 400px) {
+	.profiles.gallery > * {
+		width: 50%;
+	}	
+}
+
+
 @media all and (min-width: 600px) {
-	.gallery a {
-		width: 49%;
+	.progress.gallery > * {
+		width: 50%;
+	}
+	.profiles.gallery > * {
+		max-width: 33.3%;
 	}
 }
 
 @media all and (min-width: 1080px) {
-	.gallery a {
-		width: 32.5%;
-	}	
+	.progress.gallery > * {
+		width: 33.3%;
+	}
+}
+
+.profiles div > div {
+	margin: 1em auto;
+	text-align: center;
+}
+
+.profiles a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.profiles img {
+	width: 100%;
+	max-width: 100px;
+	border-radius: 50%;
+	margin: 0 auto;
+}
+
+.profiles span {
+	color: #B3B3B3;
+	font-weight: lighter;
+	font-size: 90%;
+	letter-spacing: -0.5px;
 }
