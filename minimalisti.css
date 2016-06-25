@@ -1,0 +1,274 @@
+/* basic page normalization */
+	body {
+		margin: 0;
+		font-family: 'Roboto', sans-serif;
+		color: #515151;
+	}
+
+
+/* typography */
+	html { font-size: 86%; }
+	h1, h2, h3, h4, h5, h6 { margin: 0; padding: .5em 0 .2em; font-weight: 300; }
+	h1 { font-size: 3rem; text-transform: uppercase; }
+	h2 { font-size: 2rem; text-transform: uppercase; }
+	h3 { font-size: 1.7rem; }
+	h4 { font-size: 1.3rem; }
+	h5 { font-size: 1.1rem; }
+	h6 { font-size: 1rem; font-weight: bold; }
+	p { padding: 0; margin-top: 0; } p:last-child { margin-bottom: 0 }
+	input, select, button, textarea { font-family: inherit; font-size: inherit; }
+
+
+/* layout */
+	.container {
+		width: 96%;
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	.row {
+		width: 100%;
+		padding: 3.5rem 0;
+	}
+
+	.row:last-child {
+		border-bottom: 0;
+	}
+
+	img.full-width {
+		width: 100%;
+		display: block;
+	}
+
+
+/* navigation */
+	.top-menu {
+		width: 100%;
+		min-height: 3rem;
+		max-height: 100vh;
+		background-color: white;
+		overflow: auto;
+		text-transform: uppercase;
+	}
+
+	.top-menu ul {
+		display: none;
+	}
+
+	.top-menu * {
+		display: block;
+		line-height: 3rem;
+		padding: 0 .5%;
+	}
+
+	.top-menu.fixed {
+		position: fixed;
+		top: 0;
+	}
+
+	.top-menu.fixed + * {
+		margin-top: 3rem;
+	}
+
+	.top-menu a {
+		text-decoration: none;
+	}
+
+	.ham-icon {
+		display: inline-block;
+	}
+
+	.ham-icon::before {
+		content: "☰";
+		padding: .5rem;
+		font-size: 2rem;
+	}
+
+	#ham-check:checked + .ham-icon::before {
+		content: "\2715";
+	}
+
+	#ham-check {
+		display: none;
+	}
+
+	#ham-check:checked + label + * {
+		display: block;
+	}
+
+
+/* grid (12 columns) */
+	.grid {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	.grid > * {
+		min-height: 2rem;
+		width: 100%;
+		box-sizing: border-box;
+		background-clip: padding-box;
+	}
+
+
+/* lists */
+	ul, ol {
+		list-style-position: inside;
+		padding: 0;
+		margin: .3em 0;
+	}
+
+	li {
+		padding-left: 0;
+	}
+
+	ul ul, ul ol, ol ol, ol ul {
+		padding-left: 1rem;
+		margin: 0;
+	}
+
+
+/* forms and buttons */
+	.form input, .form textarea {
+		min-height: 1.2rem;
+		display: block;
+		width: 100%;
+		padding: 1%;
+		color: grey;
+		border: 1px solid grey;
+	}
+
+	.form textarea { 
+	   resize: vertical;
+	}
+
+	.form input[type="submit"] {
+		float: right;
+	}
+
+	.form input, .form textarea, .btn, .btn-primary, .btn-colored {
+		box-sizing: border-box;
+		border-radius: 4px;
+		background-color: white;
+		margin: .3em 0;
+		outline: 0;
+	}
+
+	.form input[type="checkbox"], .form input[type="radio"] {
+		vertical-align: middle;
+		margin-right: .5rem;
+		width: auto;
+	}
+
+	.form fieldset {
+		border: 0;
+		padding: 0;
+		margin: 1rem 0 0;
+	}
+
+	.form label {
+		display: block;
+	}
+
+	.form label > input {
+		display: inline-block;
+		min-width: 0;
+	}
+
+	.form strong:after {
+		content: ':';
+	}
+
+	.btn, .btn-primary, .btn-colored, .form .btn {
+		vertical-align: middle;
+		font-size: 80%;
+		padding: 1em 2em;
+		display: inline-block;
+		text-transform: uppercase;
+		text-decoration: none;
+		cursor: pointer;
+		width: auto;
+		min-width: 80px;
+		color: grey;
+		border: 1px solid grey;
+	}
+
+	.btn-primary {
+		color: white !important;
+	}
+
+
+/* table */
+	.table {
+		width: 100%;
+		border-spacing: 0;
+	}
+
+	.table tr {
+		height: 3rem;
+	}
+
+	.table th, td {
+		padding: 1.25em 2%;
+		border-bottom-style: solid;
+	}
+
+	.table td {
+		border-bottom-width: 1px;
+	}
+
+	.table th {
+		text-align: left;
+		border-bottom-width: 2px; 
+	}
+
+
+/* code */
+	.code, .code-bl {
+		background-color: #F3F3F3;
+		padding: 3px 6px;
+		border-radius: 5px;
+	}
+
+	.code-bl {
+		display: block;
+		padding: 2.5%;
+		overflow-x: auto;
+	}
+
+	pre {
+		tab-size: 4;
+	}
+
+/* responsive */
+	@media all and (min-width: 520px) {
+
+		html { font-size: 100%; }
+
+		.col-1	{ width: 7.3%; }
+		.col-2	{ width: 15.6%; }
+		.col-3	{ width: 24%; }
+		.col-4	{ width: 32.3%; }
+		.col-5	{ width: 40.6%; }
+		.col-6	{ width: 49%; }
+		.col-7	{ width: 57.3%; }
+		.col-8	{ width: 65.6%; }
+		.col-9	{ width: 74%; }
+		.col-10	{ width: 82.3%; }
+		.col-11	{ width: 90.6%; }
+
+		.ham-icon {
+			display: none;
+		}
+
+		.top-menu ul {
+			display: block;
+			padding: 0;
+		}
+
+		.top-menu li {
+			display: inline-block;
+		}
+
+	}
