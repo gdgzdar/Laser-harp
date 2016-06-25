@@ -1,0 +1,24 @@
+header {
+	background-color: #282A36;
+	color: white;
+	text-align: center;
+}
+
+svg {
+	width: 85%;
+	margin: 0 auto;
+	display: block;
+}
+
+rect, line {
+	fill: none;
+	stroke: #DEDEDE;
+	stroke-width: 1.8px;
+	vector-effect: non-scaling-stroke;
+}
+
+svg text {
+	font-weight: lighter;
+	fill: #D9D9D9;
+	word-spacing: 2px;
+}

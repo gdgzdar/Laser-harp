@@ -9,7 +9,7 @@
 /* typography */
 	html { font-size: 86%; }
 	h1, h2, h3, h4, h5, h6 { margin: 0; padding: .5em 0 .2em; font-weight: 300; }
-	h1 { font-size: 3rem; text-transform: uppercase; }
+	h1 { font-size: 3rem; }
 	h2 { font-size: 2rem; text-transform: uppercase; }
 	h3 { font-size: 1.7rem; }
 	h4 { font-size: 1.3rem; }
@@ -21,14 +21,13 @@
 
 /* layout */
 	.container {
-		width: 96%;
-		max-width: 900px;
+		max-width: calc(36% + 400px);
 		margin: 0 auto;
 	}
 
 	.row {
 		width: 100%;
-		padding: 3.5rem 0;
+		padding: calc(3.5rem + 1vw) 0;
 	}
 
 	.row:last-child {
