@@ -31,3 +31,25 @@ svg text {
 video {
 	width: 100%;
 }
+
+.row#progress a {
+	width: 100%;
+	display: inline-block;
+}
+
+.row#progress img {
+	display: block;
+	width: 100%;
+}
+
+@media all and (min-width: 600px) {
+	.row#progress a {
+		width: 49%;
+	}
+}
+
+@media all and (min-width: 900px) {
+	.row#progress a {
+		width: 32%;
+	}	
+}
