@@ -32,24 +32,32 @@ video {
 	width: 100%;
 }
 
-.row#progress a {
-	width: 100%;
-	display: inline-block;
+.gallery {
+	display: -webkit-flex;
+	display: flex;
+	flex-wrap: wrap;
 }
 
-.row#progress img {
+.gallery a {
+	width: 100%;
+	display: block;
+	padding: .2em;
+	box-sizing: border-box;
+}
+
+img {
 	display: block;
 	width: 100%;
 }
 
 @media all and (min-width: 600px) {
-	.row#progress a {
+	.gallery a {
 		width: 49%;
 	}
 }
 
-@media all and (min-width: 900px) {
-	.row#progress a {
-		width: 32%;
+@media all and (min-width: 1080px) {
+	.gallery a {
+		width: 32.5%;
 	}	
 }
