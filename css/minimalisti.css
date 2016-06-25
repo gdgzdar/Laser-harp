@@ -7,7 +7,7 @@
 
 
 /* typography */
-	html { font-size: 86%; }
+	html { font-size: 89%; }
 	h1, h2, h3, h4, h5, h6 { margin: 0; padding: .5em 0 .2em; font-weight: 300; }
 	h1 { font-size: 3.8rem; }
 	h2 { font-size: 2rem; text-transform: uppercase; }
@@ -21,13 +21,13 @@
 
 /* layout */
 	.container {
-		max-width: calc(36% + 400px);
+		width: calc(30% + 200px);
 		margin: 0 auto;
 	}
 
 	.row {
 		width: 100%;
-		padding: calc(3.5rem + 1vw) 0;
+		padding: calc(1rem + 2vw) 0;
 	}
 
 	.row:last-child {

@@ -10,7 +10,7 @@ h1 {
 }
 
 svg {
-	width: 85%;
+	width: 100%;
 	margin: 0 auto;
 	display: block;
 }
@@ -26,4 +26,8 @@ svg text {
 	font-weight: lighter;
 	fill: #C4C5CC;
 	word-spacing: 2px;
+}
+
+video {
+	width: 100%;
 }
