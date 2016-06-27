@@ -33,6 +33,14 @@
 	}
 
 	a {
+		color: #5C6DD1;
+	}
+
+	a:visited {
+		color: #3D488A;
+	}
+
+	* {
 		outline: 0;
 		-webkit-tap-highlight-color: transparent;
 	}
@@ -52,13 +60,9 @@
 
 
 /* code */
-	.code, .code-bl {
+	code {
 		background-color: #F3F3F3;
 		padding: 3px 6px;
-		border-radius: 5px;
-	}
-
-	.code-bl {
 		display: block;
 		padding: 2.5%;
 		overflow-x: auto;
