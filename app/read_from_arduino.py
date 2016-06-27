@@ -1,13 +1,13 @@
-import serial
 import copy
-from sound_player import *
+import serial
 from random import *
-from time import *
+
+from sound_player import *
 
 
 class Harp:
     def __init__(self, musical_instrument, notes):
-        self.arduino = serial.Serial('/dev/ttyACM0', 9600)
+        self.arduino = serial.Serial('/dev/ttyACM1', 9600)
         self.musical_instrument = musical_instrument
         self.NUMBER_OF_STRINGS = 22
         self.notes = notes
@@ -20,7 +20,7 @@ class Harp:
         self.played_sounds = []
         self.x = 0
         self.data = ''
-        for x in range(10):
+        for x in range(50):
             self.data = self.arduino.readline()
             print(self.data)
 

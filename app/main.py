@@ -1,8 +1,9 @@
+import serial
+import serial.tools.list_ports
 from tkFont import Font
-<<<<<<< Updated upstream
 from PIL import Image, ImageTk
-=======
->>>>>>> Stashed changes
+import threading
+import copy
 
 try:
     import Tkinter as tk
@@ -13,16 +14,17 @@ from sound_player import *
 
 
 class Dialog:
-    def __init__(self, parent):
+    def __init__(self, parent, ports):
         top = self.top = tk.Toplevel(parent)
         top.resizable(width=tk.FALSE, height=tk.FALSE)
 
-        variable = tk.StringVar(top)
-        variable.set("a")
+        self.ports = ports
+        self.variable = tk.StringVar(top)
+        self.variable.set(ports.keys()[0])
 
         tk.Label(top, text="Arduino on port: ", font=Font(family="Sans", size=-55), foreground='#7d7d7d').grid(row=0,
                                                                                                                column=0)
-        dropdown = tk.OptionMenu(top, variable, "a", "b")
+        dropdown = tk.OptionMenu(top, self.variable, ports.keys()[0])
         dropdown.config(font=Font(family="Sans", size=-55))
         dropdown.config(bg="#3f51b5")
         dropdown.config(foreground="white")
@@ -39,15 +41,31 @@ class Dialog:
 
     def ok(self):
         self.top.destroy()
+        return self.ports[self.variable]
 
 
 class Harp:
     def __init__(self):
+        ports = list(serial.tools.list_ports.comports())
+        self.ports_dictionary = {}
+        for port in ports:
+            print(port)
+            port_str = str(port)
+            key = port_str[:port_str.find(" ")]
+            value = port_str[port_str.find("-") + 2:]
+            self.ports_dictionary[key] = value
         self.last_key = 'last_key'
         self.musical_instrument = "Bass"
+        self.arduino = serial.Serial('/dev/ttyACM0', 9600)
+        self.actual_booleans = []
+        self.last_booleans = []
+        self.NUMBER_OF_STRINGS = 22
+        for x in range(0, self.NUMBER_OF_STRINGS):
+                    self.actual_booleans.append(False)
+                    self.last_booleans.append(False)
         self.main_window = tk.Tk()
-        self.width = 1280#self.main_window.winfo_screenwidth()
-        self.height = 800#self.main_window.winfo_screenheight()
+        self.width = self.main_window.winfo_screenwidth()
+        self.height = self.main_window.winfo_screenheight()
         self.menu = ["Menu", "Bass", "Church", "Glitch", "Glow", "Iron", "Techno", "Steal", "Violin"]
         empty_image = Image.open("images/notes/empty.png").resize(
             (int(0.06770833333 * self.width + 1), int(0.363888889 * self.height)))
@@ -177,13 +195,14 @@ class Harp:
             self.note_label.__setitem__("text", self.notes_keys.get(user_input))
             self.rerender_notes()
             self.notes_playing += 1
-            if self.notes_playing >= 10:
+            if self.notes_playing >= 22:
                 self.played_sounds[0].player.stop()
                 self.played_sounds[0].player.delete()
                 self.played_sounds[0].sound.delete()
                 self.played_sounds[0].listener.delete()
                 self.played_sounds.remove(self.played_sounds[0])
                 self.notes_playing -= 1
+                print("remove")
             self.played_sounds.append(self.sounds.get(user_input))
             self.sounds.get(user_input).play()
 
@@ -229,7 +248,8 @@ class Harp:
             (int(0.78177083333 * self.width), int(0.24166666667 * self.height))))
         logo_label = tk.Label(self.main_window, image=logo_image)
         logo_label.grid(row=0, column=1, sticky=tk.N)
-
+        self.serial_thread = threading.Thread(target=self.read_from_serial, args=())
+        self.serial_thread.start()
         self.main_window.geometry(str(self.width) + "x" + str(self.height))
         self.main_window.bind("<Key>", lambda event: self.play_sound(self.sounds.get(str(event.char)), str(event.char)))
         self.main_window.mainloop()
@@ -240,7 +260,7 @@ class Harp:
             self.instrument_label.config(image=self.instrument_images.get(new_instrument))
             self.load_sounds()
         else:
-            dialog = Dialog(self.main_window)
+            dialog = Dialog(self.main_window, self.ports_dictionary)
             self.main_window.wait_window(dialog.top)
 
     def rerender_notes(self):
@@ -258,6 +278,24 @@ class Harp:
         for label in self.labels:
             label.grid(row=0, column=1, sticky=tk.NW, padx=(padding, 0), pady=(0.60185185185 * self.height, 0))
             padding += 0.06770833333 * self.width
+
+    def read_from_serial(self):
+        self.data = ''
+        for x in range(50):
+            self.data = self.arduino.readline()
+            print(self.data)
+        while True:
+            self.data = self.arduino.readline()
+            self.data = self.data[:22]
+            self.last_booleans = copy.copy(self.actual_booleans)
+            for x in range(len(self.data)):
+                if self.data[x] == '0':
+                    self.actual_booleans[x] = False
+                else:
+                    self.actual_booleans[x] = True
+            for z in range(len(self.actual_booleans)):
+                if self.actual_booleans[z] == True and not self.actual_booleans[z] == self.last_booleans[z]:
+                    self.play_sound(self.sounds.get(self.keys[z]), self.keys[z])
 
     def check_scale(self, last):
         if not last == self.sound_scale.get():
