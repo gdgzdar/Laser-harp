@@ -1,7 +1,7 @@
 /* basic page normalization */
 	body {
 		margin: 0;
-		font-family: 'Roboto', sans-serif;
+		font-family: 'Raleway', sans-serif;
 		color: #515151;
 	}
 
@@ -18,13 +18,16 @@
 	}
 	
 	h1 {
+		text-align: center;
 		font-size: calc(1.5rem + 2vw); 
-		padding-top: 1em;
+		padding-top: 2em;
 		padding-bottom: 0;
+		color: #4A4A4A;
+		font-weight: 200;
 	}
 
 	h2 { 
-		font-size: calc(1.2rem + 1.2vw);
+		font-size: calc(1rem + 1.2vw);
 		text-transform: uppercase;
 	}
 
@@ -61,7 +64,7 @@
 
 /* code */
 	code {
-		background-color: #F3F3F3;
+		background-color: #EEEEEE;
 		padding: 3px 6px;
 		display: block;
 		padding: 2.5%;
@@ -84,24 +87,14 @@
 	line {
 		fill: none;
 
-		stroke: #D8D9E1;
-		stroke-width: 1.8px;
+		stroke: #D7D7D7;
+		stroke-width: 1.3px;
 		vector-effect: non-scaling-stroke;
 	}
 
 	svg text {
-		font-weight: lighter;
 		word-spacing: 2px;
-		fill: #C4C5CC;
-	}
-
-
-/* page header */
-	header {
-		text-align: center;
-		color: white;
-		background-color: #282A36;
-		margin-bottom: calc(1em + 1vw);
+		fill: #CCCCCC;
 	}
 
 
@@ -148,7 +141,7 @@
 	}
 
 	.profiles span {
-		color: #B3B3B3;
+		color: #A8A8A8;
 		font-weight: lighter;
 		font-size: calc(90% + .3vw);
 		letter-spacing: -0.5px;
