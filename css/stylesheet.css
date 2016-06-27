@@ -32,6 +32,11 @@
 		font-size: calc(.9rem + .25vw);
 	}
 
+	a {
+		outline: 0;
+		-webkit-tap-highlight-color: transparent;
+	}
+
 
 /* layout */
 	.container {
