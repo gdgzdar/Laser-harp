@@ -9,6 +9,12 @@ private:
   
 	const int joystickCenterValue = 530;
 	const int joystickTolerance = 400;
+	const char POSITION_RIGHT = 'R';
+	const char POSITION_LEFT = 'L';
+	const char POSITION_UP = 'U';
+	const char POSITION_DOWN = 'D';
+	const char POSITION_NEUTRAL = 'N';
+
 
 public:
 	Joystick(int getPinY, int getPinX, int getPinButton) {
@@ -31,24 +37,32 @@ public:
 
 	char getY() {
 		int y = getAnalogY();
-		if (y > (joystickCenterValue + joystickTolerance)) {
-			return 'R';
-		} else if (y < (joystickCenterValue - joystickTolerance)) {
-			return 'L';
+		if (isJoystickBiasedRightOrUp(y)) {
+			return POSITION_RIGHT;
+		} else if (isJoystickBiasedLeftOrDown(y)) {
+			return POSITION_LEFT;
 		} else {
-			return 'N';
+			return POSITION_NEUTRAL;
 		}
 	}
 
 	char getX() {
 		int x = getAnalogX();
-		if (x > (joystickCenterValue + joystickTolerance)) {
-			return 'U';
-		} else if (x < (joystickCenterValue - joystickTolerance)) {
-			return 'D';
+		if (isJoystickBiasedRightOrUp(x)) {
+			return POSITION_UP;
+		} else if (isJoystickBiasedLeftOrDown(x)) {
+			return POSITION_DOWN;
 		} else {
-			return 'N';
+			return POSITION_NEUTRAL;
 		}
+	}
+
+	bool isJoystickBiasedRightOrUp(int coordinate) {
+		return coordinate > (joystickCenterValue + joystickTolerance);
+	}
+
+	bool isJoystickBiasedLeftOrDown(int coordinate) {
+		return coordinate < (joystickCenterValue - joystickTolerance);
 	}
 
 };
