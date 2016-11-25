@@ -7,3 +7,4 @@ The application requires following:
 * Serial library for python
 * Imaging library pillow for python
 * Imaging library tk for python
+* Game library pygame for python
