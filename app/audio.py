@@ -15,18 +15,24 @@ class Reader:
 
 class Player:
     def __init__(self, instrument, port):
+        self.actual_tones = "0000000000000000000000000000"
+        self.last_tones = "000000000000000000000000000"
         self.mixer = None
         self.load_pygame()
         self.instrument = instrument
         self.sounds = {}
         self.load_sounds()
         self.arduino = Reader(port)
+        self.indexes_to_notes = [
+            "C", "D", "E", "F", "G", "A", "H", "C1", "D1", "E1", "F1", "G1", "A1", "H1", "C2", "D2", "E2", "F2", "G2",
+            "A2", "H3", "C3", "C3", "C3", "C3"
+        ]
 
     def load_pygame(self):
         pygame.init()
         self.mixer = pygame.mixer
         self.mixer.init(44100, -16, 2, 2048)
-        self.mixer.set_num_channels(100)
+        self.mixer.set_num_channels(200)
 
     def load_sounds(self):
         self.sounds = {
@@ -59,5 +65,12 @@ class Player:
         channel.play(self.sounds.get(sound))
 
     def listen_arduino(self):
+        for x in range(0, 20):
+            self.arduino.read_line()
         while True:
-            print(self.arduino.read_line())
+            self.actual_tones = self.arduino.read_line()
+            print(len(self.actual_tones))
+            for x in range(0, len(self.actual_tones)):
+                if self.actual_tones[x] != self.last_tones[x]:
+                    self.play_sound(self.indexes_to_notes[x])
+            self.last_tones = self.actual_tones
