@@ -6,4 +6,4 @@ thread = threading.Thread(target=player.listen_arduino)
 thread.daemon = True
 thread.start()
 
-time.sleep(60)
+time.sleep(600)

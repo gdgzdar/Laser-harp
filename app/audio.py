@@ -69,7 +69,6 @@ class Player:
             self.arduino.read_line()
         while True:
             self.actual_tones = self.arduino.read_line()
-            print(len(self.actual_tones))
             for x in range(0, len(self.actual_tones)):
                 if self.actual_tones[x] != self.last_tones[x]:
                     self.play_sound(self.indexes_to_notes[x])
