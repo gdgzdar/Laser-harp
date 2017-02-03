@@ -9,6 +9,18 @@ class Reader:
     def __init__(self, port):
         self.device = serial.Serial(port, 9600)
 
+    @staticmethod
+    def get_available_ports():
+        if sys.platform.startswith('win'):
+            ports = ['COM%s' % (i + 1) for i in range(256)]
+        elif sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
+            ports = glob.glob('/dev/tty[A-Za-z]*')
+        elif sys.platform.startswith('darwin'):
+                ports = glob.glob('/dev/tty.*')
+        else:
+            raise EnvironmentError('Unsupported platform')
+        return ports
+
     def read_line(self):
         line = str(self.device.readline())
         line = line[1:24]
@@ -75,23 +87,3 @@ class Player:
                 if self.actual_tones[x] != self.last_tones[x]:
                     self.play_sound(self.indexes_to_notes[x])
             self.last_tones = self.actual_tones
-
-
-
-
-
-
-
-
-    def get_available_ports():
-        if sys.platform.startswith('win'):
-            ports = ['COM%s' % (i + 1) for i in range(256)]
-        elif sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-            ports = glob.glob('/dev/tty[A-Za-z]*')
-        elif sys.platform.startswith('darwin'):
-                ports = glob.glob('/dev/tty.*')
-        else:
-            raise EnvironmentError('Unsupported platform')
-        return ports
-
-
