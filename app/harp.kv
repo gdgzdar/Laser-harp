@@ -1,9 +1,13 @@
 #:kivy 1.9.1
 <InstrumentsList>:
-    canvas:
+    canvas.before:
+        Color:
+            rgba: 0.25, 0.31640625, 0.70703125, 1
         Rectangle:
             size: 18.229166667 * root.width / 100, self.height
     Button:
+        background_color: (0.25, 0.31640625, 0.70703125, 1)
+        background_normal: ''
         font_size: 7.407407407 * root.height / 100
         height: 16.111111111 * root.height / 100
         width: 18.229166667 * root.width / 100
@@ -11,6 +15,8 @@
         top: root.top - (0 * root.height / 100)     #Why are root.top and root.top - (0 * root.height / 100) different?
 
     ToggleButton:
+        background_color: (0.25, 0.31640625, 0.70703125, 1)
+        background_normal: ''
         font_size: 4.537037037 * root.height / 100
         group: "Instruments"
         height: 7.777777778 * root.height / 100
@@ -19,6 +25,8 @@
         top: root.top - (16.111111111 * root.height / 100)
 
     ToggleButton:
+        background_color: (0.25, 0.31640625, 0.70703125, 1)
+        background_normal: ''
         font_size: 4.537037037 * root.height / 100
         group: "Instruments"
         height: 7.777777778 * root.height / 100
@@ -27,6 +35,8 @@
         top: root.top - (16.111111111 * root.height / 100) - (7.777777778 * root.height / 100)
 
     ToggleButton:
+        background_color: (0.25, 0.31640625, 0.70703125, 1)
+        background_normal: ''
         font_size: 4.537037037 * root.height / 100
         group: "Instruments"
         height: 7.777777778 * root.height / 100
@@ -35,6 +45,8 @@
         top: root.top - (16.111111111 * root.height / 100) - 2 * (7.777777778 * root.height / 100)
 
     ToggleButton:
+        background_color: (0.25, 0.31640625, 0.70703125, 1)
+        background_normal: ''
         font_size: 4.537037037 * root.height / 100
         group: "Instruments"
         height: 7.777777778 * root.height / 100
@@ -43,6 +55,8 @@
         top: root.top - (16.111111111 * root.height / 100) - 3 * (7.777777778 * root.height / 100)
 
     ToggleButton:
+        background_color: (0.25, 0.31640625, 0.70703125, 1)
+        background_normal: ''
         font_size: 4.537037037 * root.height / 100
         group: "Instruments"
         height: 7.777777778 * root.height / 100
