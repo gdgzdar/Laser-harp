@@ -12,7 +12,7 @@
         height: 16.111111111 * root.height / 100
         width: 18.229166667 * root.width / 100
         text: "Menu"
-        top: root.top - (0 * root.height / 100)     #Why are root.top and root.top - (0 * root.height / 100) different?
+        top: root.top - (0 * root.height)     #Why are root.top and root.top - (0 * root.height / 100) different?
 
     ToggleButton:
         background_color: (0.25, 0.31640625, 0.70703125, 1)
@@ -63,3 +63,9 @@
         width: 18.229166667 * root.width / 100
         text: "Harp"
         top: root.top - (16.111111111 * root.height / 100) - 4 * (7.777777778 * root.height / 100)
+
+    Image:
+        height: 24.074074074 * root.height/ 100
+        width: 81.770833333 * root.width / 100
+        source: "images/GDG_logo.png"
+        pos: 18.229166667 * root.width / 100, 100
