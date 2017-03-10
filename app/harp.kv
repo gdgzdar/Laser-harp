@@ -1,0 +1,51 @@
+#:kivy 1.9.1
+<InstrumentsList>:
+    canvas:
+        Rectangle:
+            size: 18.229166667 * root.width / 100, self.height
+    Button:
+        font_size: 7.407407407 * root.height / 100
+        height: 16.111111111 * root.height / 100
+        width: 18.229166667 * root.width / 100
+        text: "Menu"
+        top: root.top - (0 * root.height / 100)     #Why are root.top and root.top - (0 * root.height / 100) different?
+
+    ToggleButton:
+        font_size: 4.537037037 * root.height / 100
+        group: "Instruments"
+        height: 7.777777778 * root.height / 100
+        width: 18.229166667 * root.width / 100
+        text: "Guitar"
+        top: root.top - (16.111111111 * root.height / 100)
+
+    ToggleButton:
+        font_size: 4.537037037 * root.height / 100
+        group: "Instruments"
+        height: 7.777777778 * root.height / 100
+        width: 18.229166667 * root.width / 100
+        text: "Piano"
+        top: root.top - (16.111111111 * root.height / 100) - (7.777777778 * root.height / 100)
+
+    ToggleButton:
+        font_size: 4.537037037 * root.height / 100
+        group: "Instruments"
+        height: 7.777777778 * root.height / 100
+        width: 18.229166667 * root.width / 100
+        text: "Harp"
+        top: root.top - (16.111111111 * root.height / 100) - 2 * (7.777777778 * root.height / 100)
+
+    ToggleButton:
+        font_size: 4.537037037 * root.height / 100
+        group: "Instruments"
+        height: 7.777777778 * root.height / 100
+        width: 18.229166667 * root.width / 100
+        text: "Piano"
+        top: root.top - (16.111111111 * root.height / 100) - 3 * (7.777777778 * root.height / 100)
+
+    ToggleButton:
+        font_size: 4.537037037 * root.height / 100
+        group: "Instruments"
+        height: 7.777777778 * root.height / 100
+        width: 18.229166667 * root.width / 100
+        text: "Harp"
+        top: root.top - (16.111111111 * root.height / 100) - 4 * (7.777777778 * root.height / 100)
