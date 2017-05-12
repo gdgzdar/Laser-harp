@@ -1,3 +1,6 @@
 .idea/
 app/*.pyc
+app/.pydevproject
+app/.project
+app/.DS_Store
 
